@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../lib/internal/Magento/Framework/ObjectManager/etc/config.xsd">
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+                <item name="deloitte_appointment_listing_data_source" xsi:type="string">Deloitte\Appointment\Model\ResourceModel\Appointment\Grid\Collection</item>
+            </argument>
+        </arguments>
+    </type>
+    <virtualType name="Deloitte\Appointment\Model\ResourceModel\Appointment\Grid\Collection" type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">deloitte_appointment</argument>
+            <argument name="resourceModel" xsi:type="string">Deloitte\Appointment\Model\ResourceModel\Appointment</argument>
+        </arguments>
+    </virtualType>
+    <preference for="Deloitte\Appointment\Api\AppointmentRepositoryInterface" type="Deloitte\Appointment\Model\AppointmentRepository"/>
+    <preference for="Deloitte\Appointment\Api\Data\AppointmentInterface" type="Deloitte\Appointment\Model\Appointment"/>
+    <preference for="Deloitte\Appointment\Api\Data\AppointmentSearchResultInterface" type="Deloitte\Appointment\Model\AppointmentSearchResult"/>
+</config>
