@@ -4,7 +4,7 @@
    <acl>
      <resources>
         <resource id="Magento_Backend::admin">
-           <resource id="Deloitte_InventoryUpdate::inventoryupdate" title="Deloitte" sortOrder="65" >
+           <resource id="Deloitte_Base::base" title="Deloitte" sortOrder="65" >
               <resource id="Deloitte_Appointment::appointment" title="Appointment" sortOrder="40" />
            </resource>
         </resource>

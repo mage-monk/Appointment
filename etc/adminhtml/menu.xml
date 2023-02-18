@@ -2,8 +2,8 @@
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:noNamespaceSchemaLocation="../../../../Magento/Backend/etc/menu.xsd">
     <menu>
-        <add id="Deloitte_Appointment::appointmenttitle" title="Appointment" module="Deloitte_InventoryUpdate"
-             sortOrder="60" parent="Deloitte_InventoryUpdate::inventoryupdate" resource="Deloitte_Appointment::appointment"/>
+        <add id="Deloitte_Appointment::appointmenttitle" title="Appointment" module="Deloitte_Base"
+             sortOrder="60" parent="Deloitte_Base::base" resource="Deloitte_Appointment::appointment"/>
         <add id="Deloitte_Appointment::appointment" title="Appointment" module="Deloitte_Appointment"
              sortOrder="70" parent="Deloitte_Appointment::appointmenttitle" action="appointment/index/index"
              resource="Deloitte_Appointment::appointment"/>
