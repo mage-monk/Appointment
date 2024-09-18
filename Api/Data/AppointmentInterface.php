@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace Deloitte\Appointment\Api\Data;
+namespace MageMonk\Appointment\Api\Data;
 
 /**
  * Appointment interface.
@@ -12,7 +12,7 @@ interface AppointmentInterface
     /**#@+
      * Constants defined for keys of the data array. Identical to the name of the getter in snake case
      */
-    const ID = 'id';
+    const ENTITY_ID = 'entity_id';
     const NAME = 'name';
     const EMAIL = 'email';
     const CONTACT_NUMBER = 'contact_number';
@@ -24,13 +24,12 @@ interface AppointmentInterface
     const MODE_OF_COMMUNICATION = 'mode_of_communication';
     const STORE_ID = 'store_id';
     const APPOINTMENT_DATETIME = 'appointment_datetime';
-    const PREFERRED_LANGUAGE = 'preferred_langugage';
+    const PREFERRED_LANGUAGE = 'preferred_language';
     const STATUS = 'status';
     const CUSTOMER_ID = 'customer_id';
     const COMMENT = 'comment';
     const CREATED_AT = 'created_at';
     const UPDATED_AT = 'updated_at';
- 
     /**#@-*/
 
     /**
@@ -38,22 +37,22 @@ interface AppointmentInterface
      *
      * @return int|null
      */
-    public function getId();
+    public function getEntityId(): ?int;
 
     /**
      * Set appointment id
      *
-     * @param int $id
+     * @param int $entityId
      * @return $this
      */
-    public function setId($id);
+    public function setEntityId(int $entityId): self;
 
     /**
      * Get name
      *
      * @return string|null
      */
-    public function getName();
+    public function getName(): ?string;
 
     /**
      * Set name
@@ -61,14 +60,14 @@ interface AppointmentInterface
      * @param string $name
      * @return $this
      */
-    public function setName($name);
+    public function setName(string $name): self;
 
     /**
      * Get email
      *
      * @return string|null
      */
-    public function getEmail();
+    public function getEmail(): ?string;
 
     /**
      * Set email
@@ -76,14 +75,14 @@ interface AppointmentInterface
      * @param string $email
      * @return $this
      */
-    public function setEmail($email);
+    public function setEmail(string $email): self;
 
     /**
      * Get contact number
      *
      * @return string|null
      */
-    public function getContactNumber();
+    public function getContactNumber(): ?string;
 
     /**
      * Set contact number
@@ -91,14 +90,14 @@ interface AppointmentInterface
      * @param string $contactNumber
      * @return $this
      */
-    public function setContactNumber($contactNumber);
+    public function setContactNumber(string $contactNumber): self;
 
     /**
      * Get address
      *
      * @return string|null
      */
-    public function getAddress();
+    public function getAddress(): ?string;
 
     /**
      * Set address
@@ -106,14 +105,14 @@ interface AppointmentInterface
      * @param string $address
      * @return $this
      */
-    public function setAddress($address);
+    public function setAddress(string $address): self;
 
     /**
      * Get state
      *
      * @return string|null
      */
-    public function getState();
+    public function getState(): ?string;
 
     /**
      * Set state
@@ -121,14 +120,14 @@ interface AppointmentInterface
      * @param string $state
      * @return $this
      */
-    public function setState($state);
-    
+    public function setState(string $state): self;
+
     /**
      * Get city
      *
      * @return string|null
      */
-    public function getCity();
+    public function getCity(): ?string;
 
     /**
      * Set city
@@ -136,14 +135,14 @@ interface AppointmentInterface
      * @param string $city
      * @return $this
      */
-    public function setCity($city);
-    
+    public function setCity(string $city): self;
+
     /**
      * Get country
      *
      * @return string|null
      */
-    public function getCountry();
+    public function getCountry(): ?string;
 
     /**
      * Set country
@@ -151,14 +150,14 @@ interface AppointmentInterface
      * @param string $country
      * @return $this
      */
-    public function setCountry($country);
-    
+    public function setCountry(string $country): self;
+
     /**
      * Get mode of appointment
      *
      * @return string|null
      */
-    public function getModeOfAppointment();
+    public function getModeOfAppointment(): ?string;
 
     /**
      * Set mode of appointment
@@ -166,14 +165,14 @@ interface AppointmentInterface
      * @param string $modeOfAppointment
      * @return $this
      */
-    public function setModeOfAppointment($modeOfAppointment);
-    
+    public function setModeOfAppointment(string $modeOfAppointment): self;
+
     /**
      * Get mode of communication
      *
      * @return string|null
      */
-    public function getModeOfCommunication();
+    public function getModeOfCommunication(): ?string;
 
     /**
      * Set mode of communication
@@ -181,14 +180,14 @@ interface AppointmentInterface
      * @param string $modeOfCommunication
      * @return $this
      */
-    public function setModeOfCommunication($modeOfCommunication);
+    public function setModeOfCommunication(string $modeOfCommunication): self;
 
     /**
      * Get store id
      *
      * @return string|null
      */
-    public function getStoreId();
+    public function getStoreId(): ?string;
 
     /**
      * Set store id
@@ -196,14 +195,14 @@ interface AppointmentInterface
      * @param string $storeId
      * @return $this
      */
-    public function setStoreId($storeId);
-    
+    public function setStoreId(string $storeId): self;
+
     /**
      * Get appointment datetime
      *
      * @return string|null
      */
-    public function getAppointmentDatetime();
+    public function getAppointmentDatetime(): ?string;
 
     /**
      * Set appointment datetime
@@ -211,14 +210,14 @@ interface AppointmentInterface
      * @param string $appointmentDatetime
      * @return $this
      */
-    public function setAppointmentDatetime($appointmentDatetime);
-    
+    public function setAppointmentDatetime(string $appointmentDatetime): self;
+
     /**
      * Get preferred language
      *
      * @return string|null
      */
-    public function getPreferredLangugage();
+    public function getPreferredLanguage(): ?string;
 
     /**
      * Set preferred language
@@ -226,14 +225,14 @@ interface AppointmentInterface
      * @param string $preferredLanguage
      * @return $this
      */
-    public function setPreferredLangugage($preferredLanguage);
-    
+    public function setPreferredLanguage(string $preferredLanguage): self;
+
     /**
      * Get status
      *
      * @return string|null
      */
-    public function getStatus();
+    public function getStatus(): ?string;
 
     /**
      * Set status
@@ -241,14 +240,14 @@ interface AppointmentInterface
      * @param string $status
      * @return $this
      */
-    public function setStatus($status);
-    
+    public function setStatus(string $status): self;
+
     /**
-     * Get comemnt
+     * Get Comment
      *
      * @return string|null
      */
-    public function getComment();
+    public function getComment(): ?string;
 
     /**
      * Set comment
@@ -256,14 +255,14 @@ interface AppointmentInterface
      * @param string $comment
      * @return $this
      */
-    public function setComment($comment);
-    
+    public function setComment(string $comment): self;
+
      /**
      * Get customer id
      *
      * @return int|null
      */
-    public function getCustomerId();
+    public function getCustomerId(): ?int;
 
     /**
      * Set customer id
@@ -271,14 +270,14 @@ interface AppointmentInterface
      * @param int $customerId
      * @return $this
      */
-    public function setCustomerId($customerId);
+    public function setCustomerId(int $customerId): self;
 
     /**
      * Get created at time
      *
      * @return string|null
      */
-    public function getCreatedAt();
+    public function getCreatedAt(): ?string;
 
     /**
      * Set created at time
@@ -286,14 +285,14 @@ interface AppointmentInterface
      * @param string $createdAt
      * @return $this
      */
-    public function setCreatedAt($createdAt);
+    public function setCreatedAt(string $createdAt): self;
 
     /**
      * Get updated at time
      *
      * @return string|null
      */
-    public function getUpdatedAt();
+    public function getUpdatedAt(): ?string;
 
     /**
      * Set updated at time
@@ -301,6 +300,6 @@ interface AppointmentInterface
      * @param string $updatedAt
      * @return $this
      */
-    public function setUpdatedAt($updatedAt);
+    public function setUpdatedAt(string $updatedAt): self;
 
 }

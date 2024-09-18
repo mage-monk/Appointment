@@ -1,9 +1,9 @@
 <?php
 declare(strict_types=1);
 
-namespace Deloitte\Appointment\Model;
+namespace MageMonk\Appointment\Model;
 
-use Deloitte\Appointment\Model\ResourceModel\Appointment\CollectionFactory;
+use MageMonk\Appointment\Model\ResourceModel\Appointment\CollectionFactory;
 
 class DataProvider extends \Magento\Ui\DataProvider\AbstractDataProvider
 {

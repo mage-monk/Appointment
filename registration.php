@@ -2,6 +2,6 @@
 
 \Magento\Framework\Component\ComponentRegistrar::register(
     \Magento\Framework\Component\ComponentRegistrar::MODULE,
-    'Deloitte_Appointment',
+    'MageMonk_Appointment',
     __DIR__
 );

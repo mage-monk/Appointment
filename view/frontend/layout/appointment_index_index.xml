@@ -10,7 +10,7 @@
                         </arguments>
                     </block>
                 </container>
-            <container name="appointment.container" htmlClass="appointment-containter" htmlTag="div">
+            <container name="appointment.container" htmlClass="appointment-container" htmlTag="div">
                 <container name="appointment.content" htmlClass="appointment-content" htmlTag="div">
                     <block class="Magento\Cms\Block\Block" name="appointment-content">
                         <arguments>
@@ -19,7 +19,7 @@
                     </block>
                 </container>
                 <container name="appointment.form" htmlClass="appointment-form-container" htmlTag="div">
-                    <block class="Deloitte\Appointment\Block\Data" name="appointment.data" template="Deloitte_Appointment::createAppointment.phtml" cacheable="false"/>
+                    <block class="MageMonk\Appointment\Block\Data" name="appointment.data" template="MageMonk_Appointment::createAppointment.phtml"/>
                 </container>
             </container>
         </referenceContainer>

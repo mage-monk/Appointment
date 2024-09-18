@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace  Deloitte\Appointment\Block\Adminhtml\Appointment\Edit;
+namespace  MageMonk\Appointment\Block\Adminhtml\Appointment\Edit;
 
 use Magento\Framework\View\Element\UiComponent\Control\ButtonProviderInterface;
 
@@ -11,9 +11,11 @@ use Magento\Framework\View\Element\UiComponent\Control\ButtonProviderInterface;
 class SaveButton extends GenericButton implements ButtonProviderInterface
 {
     /**
+     * Get button data
+     *
      * @return array
      */
-    public function getButtonData()
+    public function getButtonData(): array
     {
         return [
             'label' => __('Save Appointment'),

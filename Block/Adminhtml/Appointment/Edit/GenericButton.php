@@ -1,9 +1,12 @@
 <?php
 declare(strict_types=1);
 
-namespace  Deloitte\Appointment\Block\Adminhtml\Appointment\Edit;
+namespace  MageMonk\Appointment\Block\Adminhtml\Appointment\Edit;
 
 use Magento\Search\Controller\RegistryConstants;
+use Magento\Framework\UrlInterface;
+use Magento\Framework\Registry;
+use Magento\Backend\Block\Widget\Context;
 
 /**
  * Class GenericButton
@@ -13,37 +16,37 @@ class GenericButton
     /**
      * Url Builder
      *
-     * @var \Magento\Framework\UrlInterface
+     * @var UrlInterface
      */
-    protected $urlBuilder;
+    protected UrlInterface $urlBuilder;
 
     /**
      * Registry
      *
-     * @var \Magento\Framework\Registry
+     * @var Registry
      */
-    protected $registry;
+    protected Registry $registry;
 
     /**
      * Constructor
      *
-     * @param \Magento\Backend\Block\Widget\Context $context
-     * @param \Magento\Framework\Registry $registry
+     * @param Context $context
+     * @param Registry $registry
      */
     public function __construct(
-        \Magento\Backend\Block\Widget\Context $context,
-        \Magento\Framework\Registry $registry
+       Context $context,
+        Registry $registry
     ) {
         $this->urlBuilder = $context->getUrlBuilder();
         $this->registry = $registry;
     }
 
     /**
-     * Return the synonyms group Id.
+     * Return the synonyms group id.
      *
      * @return int|null
      */
-    public function getId()
+    public function getId(): ?int
     {
         $appointment = $this->registry->registry('appointment');
         return $appointment ? $appointment->getId() : null;
@@ -52,11 +55,11 @@ class GenericButton
     /**
      * Generate url by route and parameters
      *
-     * @param   string $route
-     * @param   array $params
+     * @param string $route
+     * @param array $params
      * @return  string
      */
-    public function getUrl($route = '', $params = [])
+    public function getUrl(string $route = '', array $params = []): string
     {
         return $this->urlBuilder->getUrl($route, $params);
     }

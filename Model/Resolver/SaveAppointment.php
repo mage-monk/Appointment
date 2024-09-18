@@ -1,28 +1,30 @@
 <?php
 declare(strict_types=1);
 
-namespace Deloitte\Appointment\Model\Resolver;
+namespace MageMonk\Appointment\Model\Resolver;
 
+use Magento\Framework\Exception\LocalizedException;
 use Magento\Framework\GraphQl\Config\Element\Field;
 use Magento\Framework\GraphQl\Query\ResolverInterface;
 use Magento\Framework\GraphQl\Schema\Type\ResolveInfo;
 use Magento\Framework\GraphQl\Exception\GraphQlInputException;
-use Deloitte\Appointment\Model\AppointmentFactory;
+use MageMonk\Appointment\Model\AppointmentFactory;
+use Magento\Framework\GraphQl\Query\Resolver\ContextInterface;
 
 class SaveAppointment implements ResolverInterface
 {
-    /** 
-     * @var PageFactory 
+    /**
+     * @var PageFactory
      */
     protected $_pageFactory;
-    
-    /** 
-     * @var ResultFactory 
+
+    /**
+     * @var ResultFactory
      */
     protected $_resultRedirect;
 
-    /** 
-     * @var AppointmentFactory 
+    /**
+     * @var AppointmentFactory
      */
     protected $_appointmentFactory;
 
@@ -42,7 +44,7 @@ class SaveAppointment implements ResolverInterface
      * Save Appointments
      *
      * @param Field $field
-     * @param \Magento\Framework\GraphQl\Query\Resolver\ContextInterface $context
+     * @param ContextInterface $context
      * @param ResolveInfo $info
      * @param array|null $value
      * @param array|null $args
@@ -62,7 +64,7 @@ class SaveAppointment implements ResolverInterface
                 "region"  => $args['input']['region'],
                 "city"   => $args['input']['city'],
                 "appointment_datetime"   =>  $args['input']['appointment_datetime'],
-                "preferred_langugage" => $args['input']['preferred_langugage'],
+                "preferred_language" => $args['input']['preferred_language'],
             ];
 
             $appointment->setData($appointmentData);

@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace Deloitte\Appointment\Ui\Component\Listing\Columns;
+namespace MageMonk\Appointment\Ui\Component\Listing\Columns;
 
 use Magento\Framework\View\Element\UiComponent\ContextInterface;
 use Magento\Framework\View\Element\UiComponentFactory;
@@ -12,14 +12,14 @@ class Action extends Column
 {
     /** Url path */
     const ROW_EDIT_URL = 'appointment/index/edit';
-    
+
     /** @var UrlInterface */
-    protected $_urlBuilder;
+    protected UrlInterface $_urlBuilder;
 
     /**
      * @var string
      */
-    private $_editUrl;
+    private string $_editUrl;
 
     /**
      * @param ContextInterface   $context
@@ -27,7 +27,7 @@ class Action extends Column
      * @param UrlInterface       $urlBuilder
      * @param array              $components
      * @param array              $data
-     * @param string             $editUrl
+     * @param string $editUrl
      */
     public function __construct(
         ContextInterface $context,
@@ -35,7 +35,7 @@ class Action extends Column
         UrlInterface $urlBuilder,
         array $components = [],
         array $data = [],
-        $editUrl = self::ROW_EDIT_URL
+        string $editUrl = self::ROW_EDIT_URL
     ) {
         $this->_urlBuilder = $urlBuilder;
         $this->_editUrl = $editUrl;
@@ -49,7 +49,7 @@ class Action extends Column
      *
      * @return array
      */
-    public function prepareDataSource(array $dataSource)
+    public function prepareDataSource(array $dataSource): array
     {
         if (isset($dataSource['data']['items'])) {
             foreach ($dataSource['data']['items'] as &$item) {
@@ -58,7 +58,7 @@ class Action extends Column
                     $item[$name]['edit'] = [
                         'href' => $this->_urlBuilder->getUrl(
                             $this->_editUrl,
-                            ['id' => $item['id']]
+                            ['entity_id' => $item['entity_id']]
                         ),
                         'label' => __('Edit'),
                     ];

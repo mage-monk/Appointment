@@ -1,113 +1,92 @@
 <?php
+
 declare(strict_types=1);
 
-namespace Deloitte\Appointment\Block;
+namespace MageMonk\Appointment\Block;
+
+use Magento\Customer\Model\Customer;
+use Magento\Directory\Block\Data as DirectoryData;
+use Magento\Framework\View\Element\Template\Context;
+use Magento\Customer\Model\Session as CustomerSession;
+use Magento\Inventory\Model\ResourceModel\Source\CollectionFactory as SourceCollectionFactory;
+
+use MageMonk\Appointment\Model\AppointmentFactory;
 
 class Data extends \Magento\Framework\View\Element\Template
 {
     /**
-     * @var \Magento\Customer\Model\Session 
-     */
-    protected $customerSession;
-    
-    /**
-     * @var \Magento\Inventory\Model\ResourceModel\Source\CollectionFactory 
-     */
-    protected $sourceCollectionFactory;
-    
-    /**
-     * @var \Deloitte\Appointment\Model\AppointmentFactory
-     */
-    protected $appointmentFactory;
-    
-    /**
-     * @var \Magento\Directory\Block\Data 
-     */
-    protected $directoryBlock;
-
-    /**
      * Initialization
-     * 
-     * @param \Magento\Framework\View\Element\Template\Context $context
-     * @param \Magento\Customer\Model\Session $customerSession
-     * @param \Magento\Inventory\Model\ResourceModel\Source\CollectionFactory $SourceCollectionFactory
-     * @param \Deloitte\Appointment\Model\AppointmentFactory $appointmentFactory
-     * @param \Magento\Directory\Block\Data $directoryBlock
+     *
+     * @param Context $context
+     * @param CustomerSession $customerSession
+     * @param SourceCollectionFactory $sourceCollectionFactory
+     * @param AppointmentFactory $appointmentFactory
+     * @param DirectoryData $directoryBlock
      * @param array $data
      */
     public function __construct(
-        \Magento\Framework\View\Element\Template\Context $context,
-        \Magento\Customer\Model\Session $customerSession,
-        \Magento\Inventory\Model\ResourceModel\Source\CollectionFactory  $SourceCollectionFactory,
-        \Deloitte\Appointment\Model\AppointmentFactory $appointmentFactory,
-        \Magento\Directory\Block\Data $directoryBlock, 
+        Context $context,
+        protected readonly CustomerSession $customerSession,
+        private readonly SourceCollectionFactory  $sourceCollectionFactory,
+        private readonly AppointmentFactory $appointmentFactory,
+        private readonly DirectoryData $directoryBlock,
         array $data = []
     ) {
         parent::__construct($context, $data);
-        $this->customerSession = $customerSession;
-        $this->sourceCollectionFactory = $SourceCollectionFactory;
-        $this->appointmentFactory = $appointmentFactory;
-        $this->directoryBlock = $directoryBlock;
     }
 
     /**
      * Get current customer information
      *
-     * @return \Magento\Customer\Model\Customer
+     * @return Customer
      */
-    public function getCustomer()
+    public function getCustomer(): Customer
     {
         return $this->customerSession->getCustomer();
-        
-    }
-    
-    /**
-     * Get stores information
-     *
-     * @return Stores
-     */
-    public function getStores() {
-       $collection = $this->sourceCollectionFactory->create()
-            ->addFieldToSelect('*')
-            ->getData();
-       return $collection;
     }
 
     /**
-     * Get customer's appointment data
+     * Get stores information
      *
-     * @return appointment
+     * @return array
      */
-    public function getAppointments()
+    public function getStores(): array
+    {
+        return $this->sourceCollectionFactory->create()
+             ->addFieldToSelect('*')
+             ->getData();
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getAppointments(): mixed
     {
        $customerId = $this->getCustomer()->getId();
-       $collection = $this->appointmentFactory->create()
-            ->getCollection()
-            ->addFieldToSelect('*')
-            ->addFieldToFilter('customer_id', $customerId)
-            ->getData();
-       return $collection;
+        return $this->appointmentFactory->create()
+             ->getCollection()
+             ->addFieldToSelect('*')
+             ->addFieldToFilter('customer_id', $customerId)
+             ->getData();
     }
-    
+
     /**
-     * Get state and country values 
+     * Get state and country values
      *
-     * @return country
+     * @return string
      */
-    public function getCountries()
+    public function getCountries(): string
     {
-        $country = $this->directoryBlock->getCountryHtmlSelect();
-        return $country;
+        return $this->directoryBlock->getCountryHtmlSelect();
     }
-    
+
     /**
-     * Get state and region values 
+     * Get state and region values
      *
-     * @return region
+     * @return string
      */
-    public function getRegion()
+    public function getRegion(): string
     {
-        $region = $this->directoryBlock->getRegionHtmlSelect();
-        return $region;
+        return $this->directoryBlock->getRegionHtmlSelect();;
     }
 }

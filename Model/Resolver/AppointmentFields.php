@@ -1,13 +1,13 @@
 <?php
 declare(strict_types=1);
 
-namespace Deloitte\Appointment\Model\Resolver;
+namespace MageMonk\Appointment\Model\Resolver;
 
 use Magento\Framework\GraphQl\Config\Element\Field;
 use Magento\Framework\GraphQl\Query\ResolverInterface;
 use Magento\Framework\GraphQl\Schema\Type\ResolveInfo;
 use Magento\Framework\GraphQl\Exception\GraphQlInputException;
-use Deloitte\Appointment\Model\ResourceModel\Appointment as AppointmentResourceModel;
+use MageMonk\Appointment\Model\ResourceModel\Appointment as AppointmentResourceModel;
 
 class AppointmentFields implements ResolverInterface
 {

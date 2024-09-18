@@ -1,5 +1,5 @@
 <?php
- /** @var \Deloitte\Appointment\Block\Appointment $block */ 
+ /** @var \MageMonk\Appointment\Block\Data $block */
 echo $block->getAppointmentData();
 $customer = $block->getCustomer();
 $stores = $block->getStores();
@@ -12,9 +12,9 @@ $stores = $block->getStores();
             <div class="field name required">
                 <label class="label" for="name"><span><?= $block->escapeHtml(__('Name')) ?></span></label>
                 <div class="control">
-                    <input type="text" class="input-text" name="name" id="name" 
+                    <input type="text" class="input-text" name="name" id="name"
                     title="<?= $block->escapeHtml(__('Name')) ?>"
-                    placeholder="<?= $block->escapeHtml(__('Name')) ?>" 
+                    placeholder="<?= $block->escapeHtml(__('Name')) ?>"
                     value="<?= $block->escapeHtmlAttr($customer->getName()) ?>"
                     data-validate="{required:true}"/>
                 </div>
@@ -88,7 +88,7 @@ $stores = $block->getStores();
                         <?= $block->getRegion() ?>
                     </div>
                 </div>
-             
+
             </div>
             <div class="field two-field">
                 <div class="field city required">
@@ -108,9 +108,9 @@ $stores = $block->getStores();
                 </div>
             </div>
             <div class="field preferred-language required">
-                <label class="label" for="preferred_langugage"><span><?= $block->escapeHtml(__('Preferred Language')) ?></span></label>
+                <label class="label" for="preferred_language"><span><?= $block->escapeHtml(__('Preferred Language')) ?></span></label>
                 <div class="control">
-                    <select id="preferred_langugage" name="preferred_langugage" title="<?= $block->escapeHtml(__('Preferred Language')) ?>" data-validate="{required:true}">
+                    <select id="preferred_language" name="preferred_language" title="<?= $block->escapeHtml(__('Preferred Language')) ?>" data-validate="{required:true}">
                         <option selected="selected hidden" value="">Preferred Language</option>
                         <option value="English">English</option>
                         <option value="Regional Language">Regional Language</option>
@@ -133,7 +133,7 @@ $stores = $block->getStores();
 <script type="text/x-magento-init">
    {
        "*": {
-           "Deloitte_Appointment/js/validation": ""
+           "MageMonk_Appointment/js/validation": ""
        }
    }
 </script>
@@ -157,11 +157,11 @@ $stores = $block->getStores();
                 $('.mode_of_communication').hide();
             }
         });
-        
+
     $(document).on('change','#country',function() {
         //console.log($('#country').find('option:selected').text());
         $('#customer-country').val($('#country').find('option:selected').text());
-        
+
     var param = 'country='+$('#country').val();
     //console.log(param);
     $.ajax({

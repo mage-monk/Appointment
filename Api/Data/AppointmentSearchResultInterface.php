@@ -1,20 +1,21 @@
 <?php
 declare(strict_types=1);
 
-namespace Deloitte\Appointment\Api\Data;
+namespace MageMonk\Appointment\Api\Data;
 
 use Magento\Framework\Api\SearchResultsInterface;
+use MageMonk\Appointment\Api\Data\AppointmentInterface;
 
 interface AppointmentSearchResultInterface extends SearchResultsInterface
 {
     /**
-     * @return \Deloitte\Appointment\Api\Data\AppointmentInterface[]
+     * @return AppointmentInterface[]
      */
-    public function getItems();
+    public function getItems(): array;
 
     /**
-     * @param \Deloitte\Appointment\Api\Data\AppointmentInterface[] $items
+     * @param AppointmentInterface[] $items
      * @return void
      */
-    public function setItems(array $items);
+    public function setItems(array $items): void;
 }

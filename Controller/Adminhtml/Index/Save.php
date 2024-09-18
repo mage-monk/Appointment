@@ -1,47 +1,40 @@
 <?php
 declare(strict_types=1);
 
-namespace Deloitte\Appointment\Controller\Adminhtml\Index;
+namespace MageMonk\Appointment\Controller\Adminhtml\Index;
+
+use Magento\Framework\App\Action\HttpPostActionInterface;
+use Magento\Framework\App\CsrfAwareActionInterface;
+use Magento\Framework\App\Request\InvalidRequestException;
+use Magento\Framework\App\RequestInterface;
 use Magento\Framework\Controller\ResultFactory;
-use Magento\Framework\App\Action\Action;
-use Magento\Framework\App\Action\Context;
-use Deloitte\Appointment\Model\AppointmentFactory;
- 
-class Save extends Action
+use MageMonk\Appointment\Model\AppointmentFactory;
+use Magento\Framework\Message\ManagerInterface;
+
+
+class Save implements HttpPostActionInterface, CsrfAwareActionInterface
 {
-    protected $request;
-    protected $appointmentFactory;
-    protected $resultFactory;
-    protected $jsonHelper;
-    protected $date;
-    
+
     /**
      * Initialization
-     * 
-     * @param Context $context
-     * @param AppointmentFactory $appointmentFactory
+     *
+     * @param RequestInterface $request
      * @param ResultFactory $resultFactory
-     * @param \Magento\Framework\Json\Helper\Data $jsonHelper
-     * @param \Magento\Framework\Stdlib\DateTime\DateTime $date
+     * @param AppointmentFactory $appointmentFactory
+     * @param ManagerInterface $messageManager
      */
     public function __construct(
-        Context $context,
-        AppointmentFactory $appointmentFactory,
-        ResultFactory $resultFactory,
-        \Magento\Framework\Json\Helper\Data $jsonHelper,
-        \Magento\Framework\Stdlib\DateTime\DateTime $date
+        private readonly RequestInterface $request,
+        private readonly ResultFactory $resultFactory,
+        private readonly AppointmentFactory $appointmentFactory,
+        private readonly ManagerInterface $messageManager
     ) {
-        $this->appointmentFactory = $appointmentFactory;
-        $this->resultFactory = $resultFactory;
-        $this->jsonHelper = $jsonHelper;
-        $this->date = $date;
-        parent::__construct($context);
-    }   
- 
+    }
+
     public function execute()
     {
         $resultRedirect = $this->resultFactory->create(ResultFactory::TYPE_REDIRECT);
-        $postData = $this->getRequest()->getPost()->toArray();     
+        $postData = $this->request->getParams();
         try {
             //$date = $this->date->gmtDate();
             $appointment = $this->appointmentFactory->create();
@@ -49,9 +42,19 @@ class Save extends Action
             $appointment->save();
             $this->messageManager->addSuccess( __('Appointment has been successfully saved.') );
         } catch (\Exception $e) {
-            $this->messageManager->addErrorMessage(nl2br($e->getMessage()));           
+            $this->messageManager->addErrorMessage(nl2br($e->getMessage()));
         }
-      
+
         return $resultRedirect->setPath("*/*/");
+    }
+
+    public function createCsrfValidationException(RequestInterface $request): ?InvalidRequestException
+    {
+        return null;
+    }
+
+    public function validateForCsrf(RequestInterface $request): ?bool
+    {
+        return true;
     }
 }

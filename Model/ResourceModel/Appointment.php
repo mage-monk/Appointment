@@ -1,21 +1,27 @@
 <?php
 declare(strict_types=1);
 
-namespace Deloitte\Appointment\Model\ResourceModel;
+namespace MageMonk\Appointment\Model\ResourceModel;
+use Magento\Framework\Model\ResourceModel\Db\Context;
 
 class Appointment extends \Magento\Framework\Model\ResourceModel\Db\AbstractDb
 {
-	
+    /**
+     * @param Context $context
+     */
 	public function __construct(
-		\Magento\Framework\Model\ResourceModel\Db\Context $context
+		Context $context
 	)
 	{
 		parent::__construct($context);
 	}
-	
-	protected function _construct()
-	{
-		$this->_init('deloitte_appointment', 'id');
+
+    /**
+     * @return void
+     */
+	protected function _construct(): void
+    {
+		$this->_init('magemonk_appointment', 'id');
 	}
-	
+
 }

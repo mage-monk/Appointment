@@ -12,13 +12,13 @@
         </item>
         <item name="template" xsi:type="string">templates/form/collapsible</item>
         <item name="buttons" xsi:type="array">
-            <item name="back" xsi:type="string">Deloitte\Appointment\Block\Adminhtml\Appointment\Edit\BackButton</item>
-            <item name="save" xsi:type="string">Deloitte\Appointment\Block\Adminhtml\Appointment\Edit\SaveButton</item>
+            <item name="back" xsi:type="string">MageMonk\Appointment\Block\Adminhtml\Appointment\Edit\BackButton</item>
+            <item name="save" xsi:type="string">MageMonk\Appointment\Block\Adminhtml\Appointment\Edit\SaveButton</item>
         </item>
     </argument>
     <dataSource name="appointment_form_data_source">
         <argument name="dataProvider" xsi:type="configurableObject">
-            <argument name="class" xsi:type="string">Deloitte\Appointment\Model\DataProvider</argument>
+            <argument name="class" xsi:type="string">MageMonk\Appointment\Model\DataProvider</argument>
             <argument name="name" xsi:type="string">appointment_form_data_source</argument>
             <argument name="primaryFieldName" xsi:type="string">id</argument>
             <argument name="requestFieldName" xsi:type="string">id</argument>
@@ -197,14 +197,14 @@
                 <dataScope>appointment_datetime</dataScope>
             </settings>
         </field>
-        <field name="preferred_langugage">
+        <field name="preferred_language">
             <argument name="data" xsi:type="array">
                 <item name="config" xsi:type="array">
                     <item name="dataType" xsi:type="string">text</item>
-                    <item name="label" xsi:type="string" translate="true">Preferred Langugage</item>
+                    <item name="label" xsi:type="string" translate="true">Preferred Language</item>
                     <item name="formElement" xsi:type="string">input</item>
-                    <item name="source" xsi:type="string">preferred_langugage</item>
-                    <item name="dataScope" xsi:type="string">preferred_langugage</item>
+                    <item name="source" xsi:type="string">preferred_language</item>
+                    <item name="dataScope" xsi:type="string">preferred_language</item>
                 </item>
             </argument>
             <settings>

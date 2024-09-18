@@ -1,46 +1,29 @@
 <?php
 declare(strict_types=1);
 
-namespace Deloitte\Appointment\Model;
+namespace MageMonk\Appointment\Model;
 
 use Magento\Framework\Api\SearchCriteriaInterface;
 use Magento\Framework\Api\SortOrder;
 use Magento\Framework\Exception\NoSuchEntityException;
-use Deloitte\Appointment\Api\Data\AppointmentInterface;
-use Deloitte\Appointment\Api\Data\AppointmentSearchResultInterface;
-use Deloitte\Appointment\Api\Data\AppointmentSearchResultInterfaceFactory;
-use Deloitte\Appointment\Api\AppointmentRepositoryInterface;
-use Deloitte\Appointment\Model\ResourceModel\Appointment\CollectionFactory as AppointmentCollectionFactory;
-use Deloitte\Appointment\Model\ResourceModel\Appointment\Collection;
+use MageMonk\Appointment\Api\Data\AppointmentInterface;
+use MageMonk\Appointment\Api\Data\AppointmentSearchResultInterface;
+use MageMonk\Appointment\Api\Data\AppointmentSearchResultInterfaceFactory;
+use MageMonk\Appointment\Api\AppointmentRepositoryInterface;
+use MageMonk\Appointment\Model\ResourceModel\Appointment\CollectionFactory as AppointmentCollectionFactory;
+use MageMonk\Appointment\Model\ResourceModel\Appointment\Collection;
 
 class AppointmentRepository implements AppointmentRepositoryInterface
 {
-    /**
-     * @var AppointmentFactory
-     */
-    private $AppointmentFactory;
-
-    /**
-     * @var AppointmentCollectionFactory
-     */
-    private $AppointmentCollectionFactory;
-
-    /**
-     * @var AppointmentSearchResultInterfaceFactory
-     */
-    private $searchResultFactory;
-
     public function __construct(
-        AppointmentFactory $AppointmentFactory,
-        AppointmentCollectionFactory $AppointmentCollectionFactory,
-        AppointmentSearchResultInterfaceFactory $searchResultFactory
+        private readonly AppointmentFactory $AppointmentFactory,
+        private readonly AppointmentCollectionFactory $appointmentCollectionFactory,
+        private readonly AppointmentSearchResultInterfaceFactory $searchResultFactory
     ) {
-        $this->AppointmentFactory = $AppointmentFactory;
-        $this->AppointmentCollectionFactory = $AppointmentCollectionFactory;
-        $this->searchResultFactory = $searchResultFactory;
     }
 
-    public function getById($id): AppointmentInterface {
+    public function getById(int $id): AppointmentInterface
+    {
         $appointment = $this->AppointmentFactory->create();
         $appointment->getResource()->load($appointment, $id);
         if (!$appointment->getId()) {
@@ -48,13 +31,15 @@ class AppointmentRepository implements AppointmentRepositoryInterface
         }
         return $appointment;
     }
-    
-    public function save(AppointmentInterface $appointment): AppointmentInterface {
+
+    public function save(AppointmentInterface $appointment): AppointmentInterface
+    {
         $appointment->getResource()->save($appointment);
         return $appointment;
     }
-    
-    public function delete(AppointmentInterface $appointment): void {
+
+    public function delete(AppointmentInterface $appointment): void
+    {
         $appointment->getResource()->delete($appointment);
     }
 
@@ -107,11 +92,4 @@ class AppointmentRepository implements AppointmentRepositoryInterface
 
         return $searchResults;
     }
-
-   
-
-
-
-    
-
 }

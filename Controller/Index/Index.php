@@ -1,32 +1,21 @@
 <?php
+
 declare(strict_types=1);
 
-namespace Deloitte\Appointment\Controller\Index;
+namespace MageMonk\Appointment\Controller\Index;
 
-use Magento\Framework\App\Action\Action;
-use Magento\Framework\App\Action\Context;
+use Magento\Framework\App\ActionInterface;
 use Magento\Framework\View\Result\Page;
 use Magento\Framework\View\Result\PageFactory;
 
-class Index extends Action
+class Index implements ActionInterface
 {
-   
-    /** 
-     * @var PageFactory 
-     */
-    public $resultPageFactory;
-
     /**
-     * @param Context $context
      * @param PageFactory $resultPageFactory
      */
     public function __construct(
-        Context $context,
-        PageFactory $resultPageFactory
-    )
-    {
-        parent::__construct($context);
-        $this->resultPageFactory = $resultPageFactory;
+        private readonly PageFactory $resultPageFactory
+    ) {
     }
 
     /**
@@ -34,10 +23,9 @@ class Index extends Action
      *
      * @return Page
      */
-    public function execute()
+    public function execute(): Page
     {
-        $resultPage = $this->resultPageFactory->create();
-        return $resultPage;
+        return $this->resultPageFactory->create();
     }
 
 }

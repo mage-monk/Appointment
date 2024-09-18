@@ -1,13 +1,16 @@
 <?php
 declare(strict_types=1);
 
-namespace  Deloitte\Appointment\Block\Adminhtml\Appointment\Edit;
+namespace  MageMonk\Appointment\Block\Adminhtml\Appointment\Edit;
 
 use Magento\Framework\View\Element\UiComponent\Control\ButtonProviderInterface;
- 
+
 class BackButton extends GenericButton implements ButtonProviderInterface
 {
-    public function getButtonData()
+    /**
+     * @return array
+     */
+    public function getButtonData(): array
     {
         return [
             'label' => __('Back'),
@@ -16,8 +19,11 @@ class BackButton extends GenericButton implements ButtonProviderInterface
             'sort_order' => 10,
         ];
     }
- 
-    public function getBackUrl()
+
+    /**
+     * @return string
+     */
+    public function getBackUrl(): string
     {
         return $this->getUrl('*/*/');
     }

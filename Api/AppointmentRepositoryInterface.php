@@ -1,35 +1,45 @@
 <?php
 declare(strict_types=1);
 
-namespace Deloitte\Appointment\Api;
+namespace MageMonk\Appointment\Api;
 
 use Magento\Framework\Api\SearchCriteriaInterface;
-use Deloitte\Appointment\Api\Data\AppointmentInterface;
+use MageMonk\Appointment\Api\Data\AppointmentInterface;
+use Magento\Framework\Exception\NoSuchEntityException;
+use MageMonk\Appointment\Api\Data\AppointmentSearchResultInterface;
 
 interface AppointmentRepositoryInterface
 {
     /**
+     * Get by id
+     *
      * @param int $id
-     * @return \Deloitte\Appointment\Api\Data\AppointmentInterface
-     * @throws \Magento\Framework\Exception\NoSuchEntityException
+     * @return AppointmentInterface
+     * @throws NoSuchEntityException
      */
-    public function getById($id);
+    public function getById(int $id): AppointmentInterface;
 
     /**
-     * @param \Deloitte\Appointment\Api\Data\AppointmentInterface $appointment
-     * @return \Deloitte\Appointment\Api\Data\AppointmentInterface
+     * Save
+     *
+     * @param AppointmentInterface $appointment
+     * @return AppointmentInterface
      */
-    public function save(AppointmentInterface $appointment);
+    public function save(AppointmentInterface $appointment): AppointmentInterface;
 
     /**
-     * @param \Deloitte\Appointment\Api\Data\AppointmentInterface $appointment
+     * Delete
+     *
+     * @param AppointmentInterface $appointment
      * @return void
      */
-    public function delete(AppointmentInterface $appointment);
+    public function delete(AppointmentInterface $appointment): void;
 
     /**
-     * @param \Magento\Framework\Api\SearchCriteriaInterface $searchCriteria
-     * @return \Deloitte\Appointment\Api\Data\AppointmentSearchResultInterface
+     * Get list
+     *
+     * @param SearchCriteriaInterface $searchCriteria
+     * @return AppointmentSearchResultInterface
      */
-    public function getList(SearchCriteriaInterface $searchCriteria);
+    public function getList(SearchCriteriaInterface $searchCriteria): AppointmentSearchResultInterface;
 }

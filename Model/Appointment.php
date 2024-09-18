@@ -1,194 +1,341 @@
 <?php
 declare(strict_types=1);
 
-namespace Deloitte\Appointment\Model;
+namespace MageMonk\Appointment\Model;
 
-class Appointment extends \Magento\Framework\Model\AbstractModel implements \Magento\Framework\DataObject\IdentityInterface,
-\Deloitte\Appointment\Api\Data\AppointmentInterface
+use MageMonk\Appointment\Api\Data\AppointmentInterface as AppointmentInterfaceAlias;
+use Magento\Framework\DataObject\IdentityInterface;
+use Magento\Framework\Model\AbstractModel;
+
+class Appointment extends AbstractModel implements IdentityInterface, AppointmentInterfaceAlias
 {
-    const CACHE_TAG = 'deloitte_appointment_appointment';
+    const CACHE_TAG = 'magemonk_appointment_appointment';
 
-    protected $_cacheTag = 'deloitte_appointment_appointment';
+    protected $_cacheTag = 'magemonk_appointment_appointment';
 
-    protected $_eventPrefix = 'deloitte_appointment_appointment';
-        
+    protected $_eventPrefix = 'magemonk_appointment_appointment';
 
-    protected function _construct()
+    /**
+     * @inheritdoc
+     */
+    protected function _construct(): void
     {
-	$this->_init('Deloitte\Appointment\Model\ResourceModel\Appointment');
+        $this->_init('MageMonk\Appointment\Model\ResourceModel\Appointment');
     }
 
-    public function getIdentities()
+    /**
+     * @inheritdoc
+     */
+    public function getIdentities(): array
     {
 	return [self::CACHE_TAG . '_' . $this->getId()];
     }
 
-    public function getDefaultValues()
+    /**
+     * @inheritdoc
+     */
+    public function getDefaultValues(): array
     {
-	$values = [];
-	return $values;
-    }
-    
-    public function getId(){
-        return $this->_getData(self::ID); 
+        return [];
     }
 
-    public function setId($id) {
-        $this->setData(self::ID, $id);
-        
+    /**
+     * @inheritdoc
+     */
+    public function getEntityId(): ?int
+    {
+        return $this->_getData(self::ENTITY_ID);
     }
-    
-    public function getName() {
-       return $this->_getData(self::NAME); 
+
+    /**
+     * @inheritdoc
+     */
+    public function setEntityId($entityId): AppointmentInterfaceAlias
+    {
+        $this->setData(self::ENTITY_ID, $entityId);
+        return $this;
     }
-    
-    public function setName($name): \this {
+
+    /**
+     * @inheritdoc
+     */
+    public function getName(): ?string
+    {
+       return $this->_getData(self::NAME);
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function setName($name): AppointmentInterfaceAlias
+    {
         $this->setData(self::NAME, $name);
         return $this;
     }
-    
-    public function getEmail() {
+
+    /**
+     * @inheritdoc
+     */
+    public function getEmail(): ?string
+    {
         return $this->_getData(self::EMAIL);
     }
-    
-    public function setEmail($email): \this {
+
+    /**
+     * @inheritdoc
+     */
+    public function setEmail($email): AppointmentInterfaceAlias
+    {
         $this->setData(self::EMAIL, $email);
         return $this;
     }
-    
-    public function getContactNumber() {
+
+    /**
+     * @inheritdoc
+     */
+    public function getContactNumber(): ?string
+    {
         return $this->_getData(self::CONTACT_NUMBER);
     }
-    
-    public function setContactNumber($contactNumber): \this {
+
+    public function setContactNumber($contactNumber): AppointmentInterfaceAlias
+    {
         $this->setData(self::CONTACT_NUMBER, $contactNumber);
         return $this;
     }
 
-    public function getAddress() {
+    /**
+     * @inheritdoc
+     */
+    public function getAddress(): ?string
+    {
         return $this->_getData(self::ADDRESS);
     }
-    
-    public function setAddress($address): \this {
+
+    /**
+     * @inheritdoc
+     */
+    public function setAddress($address): AppointmentInterfaceAlias
+    {
         $this->setData(self::ADDRESS, $address);
         return $this;
     }
 
-    public function getState() {
+    /**
+     * @inheritdoc
+     */
+    public function getState(): ?string
+    {
         return $this->_getData(self::STATE);
     }
-    
-    public function setState($state): \this {
+
+    /**
+     * @inheritdoc
+     */
+    public function setState($state): AppointmentInterfaceAlias
+    {
         $this->setData(self::STATE, $state);
         return $this;
     }
-    
-    public function getCity() {
+
+    /**
+     * @inheritdoc
+     */
+    public function getCity(): ?string
+    {
         return $this->_getData(self::CITY);
     }
-    
-    public function setCity($city): \this {
+
+    /**
+     * @inheritdoc
+     */
+    public function setCity($city): AppointmentInterfaceAlias
+    {
         $this->setData(self::CITY, $city);
         return $this;
     }
-    
-    public function getCountry() {
+
+    /**
+     * @inheritdoc
+     */
+    public function getCountry(): ?string
+    {
         return $this->_getData(self::COUNTRY);
     }
-    
-    public function setCountry($country): \this {
-       $this->setData(self::COUNTRY, $country); 
+
+    /**
+     * @inheritdoc
+     */
+    public function setCountry($country): AppointmentInterfaceAlias
+    {
+       $this->setData(self::COUNTRY, $country);
        return $this;
     }
-    
-    public function getModeOfAppointment() {
+
+    /**
+     * @inheritdoc
+     */
+    public function getModeOfAppointment(): ?string
+    {
         return $this->_getData(self::MODE_OF_APPOINTMENT);
     }
 
-    public function setModeOfAppointment($modeOfAppointment): \this {
-        $this->setData(self::MODE_OF_APPOINTMENT, $modeOfAppointment); 
+    /**
+     * @inheritdoc
+     */
+    public function setModeOfAppointment($modeOfAppointment): self
+    {
+        $this->setData(self::MODE_OF_APPOINTMENT, $modeOfAppointment);
         return $this;
     }
-    
-    public function getModeOfCommunication() {
+
+    /**
+     * @inheritdoc
+     */
+    public function getModeOfCommunication(): ?string
+    {
         return $this->_getData(self::MODE_OF_COMMUNICATION);
     }
-    
-    public function setModeOfCommunication($modeOfCommunication): \this {
-        $this->setData(self::MODE_OF_COMMUNICATION, $modeOfCommunication); 
+
+    /**
+     * @inheritdoc
+     */
+    public function setModeOfCommunication($modeOfCommunication): self {
+        $this->setData(self::MODE_OF_COMMUNICATION, $modeOfCommunication);
         return $this;
     }
-    
-    public function getStoreId() {
+
+    /**
+     * @inheritdoc
+     */
+    public function getStoreId(): ?string
+    {
         return $this->_getData(self::STORE_ID);
     }
-    
-    public function setStoreId($storeId): \this {
-        $this->setData(self::STORE_ID, $storeId); 
+
+    /**
+     * @inheritdoc
+     */
+    public function setStoreId($storeId): self
+    {
+        $this->setData(self::STORE_ID, $storeId);
         return $this;
     }
-    
-    public function getAppointmentDatetime() {
+
+    /**
+     * @inheritdoc
+     */
+    public function getAppointmentDatetime(): ?string
+    {
         return $this->_getData(self::APPOINTMENT_DATETIME);
     }
 
-    public function setAppointmentDatetime($appointmentDatetime): \this {
-        $this->setData(self::APPOINTMENT_DATETIME, $appointmentDatetime); 
+    /**
+     * @inheritdoc
+     */
+    public function setAppointmentDatetime($appointmentDatetime): self {
+        $this->setData(self::APPOINTMENT_DATETIME, $appointmentDatetime);
         return $this;
     }
 
-    public function getPreferredLangugage() {
-        return $this->_getData(self::PREFERRED_LANGUAGE);
-    }
-    
-    public function setPreferredLangugage($preferredLanguage): \this {
-        $this->setData(self::PREFERRED_LANGUAGE, $preferredLanguage); 
-        return $this;
-    }
-    
-    public function getStatus() {
+    /**
+     * @inheritdoc
+     */
+    public function getStatus(): ?string
+    {
         return $this->_getData(self::STATUS);
     }
-    
-    public function setStatus($status): \this {
-        $this->setData(self::STATUS, $status); 
+
+    /**
+     * @inheritdoc
+     */
+    public function setStatus($status): self
+    {
+        $this->setData(self::STATUS, $status);
         return $this;
     }
-    
-    public function getCustomerId() {
+
+    /**
+     * @inheritdoc
+     */
+    public function getCustomerId(): ?int
+    {
         return $this->_getData(self::CUSTOMER_ID);
     }
-    
-    public function setCustomerId($customerId): \this {
+
+    /**
+     * @inheritdoc
+     */
+    public function setCustomerId($customerId): self
+    {
         $this->setData(self::CUSTOMER_ID, $customerId);
         return $this;
     }
-    
-    public function getComment() {
+
+    /**
+     * @inheritdoc
+     */
+    public function getComment(): ?string
+    {
         return $this->_getData(self::COMMENT);
     }
-    
-    public function setComment($comment): \this {
-       $this->setData(self::COMMENT, $comment); 
+
+    /**
+     * @inheritdoc
+     */
+    public function setComment($comment): self
+    {
+       $this->setData(self::COMMENT, $comment);
        return $this;
     }
 
-    public function getCreatedAt() {
+    /**
+     * @inheritdoc
+     */
+    public function getCreatedAt(): ?string
+    {
         return $this->_getData(self::CREATED_AT);
     }
-    
-    public function setCreatedAt($createdAt): \this {
-        $this->setData(self::CREATED_AT, $createdAt); 
+
+    /**
+     * @inheritdoc
+     */
+    public function setCreatedAt($createdAt): self
+    {
+        $this->setData(self::CREATED_AT, $createdAt);
         return $this;
     }
-    
-    public function getUpdatedAt() {
-       return $this->_getData(self::UPDATED_AT); 
+
+    /**
+     * @inheritdoc
+     */
+    public function getUpdatedAt(): ?string
+    {
+       return $this->_getData(self::UPDATED_AT);
     }
-    
-    public function setUpdatedAt($updatedAt): \this {
-       $this->setData(self::UPDATED_AT, $updatedAt); 
+
+    /**
+     * @inheritdoc
+     */
+    public function setUpdatedAt($updatedAt): self {
+       $this->setData(self::UPDATED_AT, $updatedAt);
        return $this;
     }
 
+    /**
+     * @inheritdoc
+     */
+    public function getPreferredLanguage(): ?string
+    {
+        return $this->_getData(self::PREFERRED_LANGUAGE);
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function setPreferredLanguage(string $preferredLanguage): AppointmentInterfaceAlias
+    {
+        $this->setData(self::PREFERRED_LANGUAGE, $preferredLanguage);
+        return $this;
+    }
 }

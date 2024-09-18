@@ -1,10 +1,10 @@
 <?php
 declare(strict_types=1);
 
-namespace Deloitte\Appointment\Model;
+namespace MageMonk\Appointment\Model;
 
 use Magento\Framework\Api\SearchResults;
-use Deloitte\Appointment\Api\Data\AppointmentSearchResultInterface;
+use MageMonk\Appointment\Api\Data\AppointmentSearchResultInterface;
 
 class AppointmentSearchResult extends SearchResults implements AppointmentSearchResultInterface
 {

@@ -1,35 +1,35 @@
 <?php
 declare(strict_types=1);
 
-namespace Deloitte\Appointment\Controller\Index;
+namespace MageMonk\Appointment\Controller\Index;
 
-use Magento\Framework\App\Action\Action;
-use Magento\Framework\App\Action\Context; 
+use Magento\Framework\App\ActionInterface;
+use Magento\Framework\App\RequestInterface;
+use Magento\Framework\Controller\Result\Redirect;
+use Magento\Framework\Controller\Result\RedirectFactory;
+use Magento\Framework\Controller\Result\JsonFactory;
+use Magento\Directory\Model\RegionFactory;
 
-class Address extends Action 
+class Address implements ActionInterface
 {
     /**
-     * Initialization 
-     * 
-     * @param Context $context
-     * @param \Magento\Framework\Controller\Result\JsonFactory $resultJsonFactory
-     * @param \Magento\Directory\Model\RegionFactory $regionColFactory
+     * Initialization
+     *
+     * @param JsonFactory $resultJsonFactory
+     * @param RegionFactory $regionFactory
      */
     public function __construct(
-        Context $context,
-        \Magento\Framework\Controller\Result\JsonFactory $resultJsonFactory,
-        \Magento\Directory\Model\RegionFactory $regionColFactory
+        private readonly RequestInterface $request,
+        private readonly JsonFactory $resultJsonFactory,
+        private readonly  RegionFactory $regionFactory
     ) {
-        $this->regionColFactory = $regionColFactory;
-        $this->resultJsonFactory = $resultJsonFactory;
-        parent::__construct($context);
     }
 
     public function execute()
     {
         $result = $this->resultJsonFactory->create();
-        $regions = $this->regionColFactory->create()->getCollection()
-            ->addFieldToFilter('country_id', $this->getRequest()->getParam('country'));
+        $regions = $this->regionFactory->create()->getCollection()
+            ->addFieldToFilter('country_id', $this->request->getParam('country'));
         return $result->setData(['success' => true, 'value' => $regions->getData()]);
     }
 

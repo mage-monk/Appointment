@@ -3,7 +3,7 @@
     <update handle="styles"/>
     <body>
         <referenceContainer name="content">
-            <uiComponent name="deloitte_appointment_listing"/>
+            <uiComponent name="magemonk_appointment_listing"/>
         </referenceContainer>
     </body>
 </page>

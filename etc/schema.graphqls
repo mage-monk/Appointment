@@ -1,5 +1,5 @@
 type Mutation {
-    saveAppointment(input: AppointmentFormInput!): AppointmentOutput @resolver(class: "\\Deloitte\\Appointment\\Model\\Resolver\\SaveAppointment") @doc(description:"Contact us form")
+    saveAppointment(input: AppointmentFormInput!): AppointmentOutput @resolver(class: "\\MageMonk\\Appointment\\Model\\Resolver\\SaveAppointment") @doc(description:"Contact us form")
 }
 
 input AppointmentFormInput {
@@ -13,7 +13,7 @@ input AppointmentFormInput {
     region: String @doc(description: "State")
     city: String @doc(description: "City")
     appointment_datetime: String @doc(description: "Appointment Datetime")
-    preferred_langugage: String @doc(description: "Preferred Langugage")
+    preferred_language: String @doc(description: "Preferred Language")
 }
 
 type AppointmentOutput {
@@ -21,9 +21,9 @@ type AppointmentOutput {
 }
 
 type Query {
-    getAppointmentFormFields: AppointmentFormFields @resolver(class: "\\Deloitte\\Appointment\\Model\\Resolver\\AppointmentFields") @doc(description: "Return all the fields of appointment table.")
+    getAppointmentFormFields: AppointmentFormFields @resolver(class: "\\MageMonk\\Appointment\\Model\\Resolver\\AppointmentFields") @doc(description: "Return all the fields of appointment table.")
 }
-  
+
 type AppointmentFormFields {
     items: [AppointmentFormField]
 }

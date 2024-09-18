@@ -1,18 +1,15 @@
 <?php
 declare(strict_types=1);
 
-namespace Deloitte\Appointment\Controller\Adminhtml\Index;
- 
+namespace MageMonk\Appointment\Controller\Adminhtml\Index;
+
 use Magento\Framework\Controller\ResultFactory;
- 
-class Edit extends \Magento\Backend\App\Action
+use Magento\Backend\App\Action;
+
+class Edit extends Action
 {
-    /**
-     * @return \Magento\Backend\Model\View\Result\Page
-     */
     public function execute()
     {
-        $resultPage = $this->resultFactory->create(ResultFactory::TYPE_PAGE);
-        return $resultPage;
+        return $this->resultFactory->create(ResultFactory::TYPE_PAGE);
     }
 }
