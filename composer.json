@@ -4,7 +4,7 @@
     "version": "1.0.1",
     "require": {
         "php": "^8.2",
-        "mage-monk/module-base": "^1.0.1"
+        "mage-monk/module-base": "^1.0.2"
     },
     "keywords": [
         "magento 2",
