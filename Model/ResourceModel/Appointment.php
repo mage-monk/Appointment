@@ -21,7 +21,7 @@ class Appointment extends \Magento\Framework\Model\ResourceModel\Db\AbstractDb
      */
 	protected function _construct(): void
     {
-		$this->_init('magemonk_appointment', 'id');
+		$this->_init('magemonk_appointment', 'entity_id');
 	}
 
 }

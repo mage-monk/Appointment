@@ -1,9 +1,9 @@
 <?php
+
 declare(strict_types=1);
 
 namespace  MageMonk\Appointment\Block\Adminhtml\Appointment\Edit;
 
-use Magento\Search\Controller\RegistryConstants;
 use Magento\Framework\UrlInterface;
 use Magento\Framework\Registry;
 use Magento\Backend\Block\Widget\Context;
@@ -13,32 +13,19 @@ use Magento\Backend\Block\Widget\Context;
  */
 class GenericButton
 {
-    /**
-     * Url Builder
-     *
-     * @var UrlInterface
-     */
-    protected UrlInterface $urlBuilder;
 
     /**
-     * Registry
-     *
-     * @var Registry
-     */
-    protected Registry $registry;
-
-    /**
-     * Constructor
+     * Initialization
      *
      * @param Context $context
      * @param Registry $registry
+     * @param UrlInterface $urlBuilder
      */
     public function __construct(
        Context $context,
-        Registry $registry
+       private readonly Registry $registry,
+       private readonly UrlInterface $urlBuilder
     ) {
-        $this->urlBuilder = $context->getUrlBuilder();
-        $this->registry = $registry;
     }
 
     /**

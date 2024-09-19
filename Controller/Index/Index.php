@@ -27,6 +27,5 @@ class Index implements ActionInterface
     {
         return $this->resultPageFactory->create();
     }
-
 }
 

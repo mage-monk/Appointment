@@ -10,34 +10,19 @@ use Magento\Framework\GraphQl\Schema\Type\ResolveInfo;
 use Magento\Framework\GraphQl\Exception\GraphQlInputException;
 use MageMonk\Appointment\Model\AppointmentFactory;
 use Magento\Framework\GraphQl\Query\Resolver\ContextInterface;
+use MageMonk\Appointment\Model\ResourceModel\Appointment as AppointmentResource;
 
 class SaveAppointment implements ResolverInterface
 {
-    /**
-     * @var PageFactory
-     */
-    protected $_pageFactory;
-
-    /**
-     * @var ResultFactory
-     */
-    protected $_resultRedirect;
-
-    /**
-     * @var AppointmentFactory
-     */
-    protected $_appointmentFactory;
-
     /**
      * Initialization
      *
      * @param AppointmentFactory $appointmentFactory
      */
     public function __construct(
-        AppointmentFactory $appointmentFactory
-    )
-    {
-        $this->_appointmentFactory           = $appointmentFactory;
+        private readonly AppointmentFactory $appointmentFactory,
+        private readonly AppointmentResource $appointmentResource,
+    ) {
     }
 
     /**
@@ -48,11 +33,12 @@ class SaveAppointment implements ResolverInterface
      * @param ResolveInfo $info
      * @param array|null $value
      * @param array|null $args
+     * @throws GraphQlInputException
      */
     public function resolve(Field $field, $context, ResolveInfo $info, array $value = null, array $args = null)
     {
         try {
-            $appointment = $this->_appointmentFactory->create();
+            $appointment = $this->appointmentFactory->create();
             $appointmentData = [
                 "name" => $args['input']['name'],
                 "email"      => $args['input']['email'],
@@ -66,13 +52,13 @@ class SaveAppointment implements ResolverInterface
                 "appointment_datetime"   =>  $args['input']['appointment_datetime'],
                 "preferred_language" => $args['input']['preferred_language'],
             ];
-
             $appointment->setData($appointmentData);
-            $appointment->save();
+            $this->appointmentResource->save($appointment);
             return ['message' => "Appointment created successfully"];
 
         } catch (LocalizedException $e) {
             throw new GraphQlInputException(__($e->getMessage()));
+        } catch (\Exception $e) {
         }
     }
 }

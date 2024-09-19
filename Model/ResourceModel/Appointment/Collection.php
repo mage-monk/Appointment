@@ -5,7 +5,7 @@ namespace MageMonk\Appointment\Model\ResourceModel\Appointment;
 
 class Collection extends \Magento\Framework\Model\ResourceModel\Db\Collection\AbstractCollection
 {
-	protected $_idFieldName = 'id';
+	protected $_idFieldName = 'entity_id';
 	protected $_eventPrefix = 'magemonk_appointment_collection';
 	protected $_eventObject = 'appointment_collection';
 

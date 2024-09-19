@@ -6,13 +6,14 @@ namespace MageMonk\Appointment\Block;
 
 use Magento\Customer\Model\Customer;
 use Magento\Directory\Block\Data as DirectoryData;
+use Magento\Framework\View\Element\Template as TemplateAlias;
 use Magento\Framework\View\Element\Template\Context;
 use Magento\Customer\Model\Session as CustomerSession;
 use Magento\Inventory\Model\ResourceModel\Source\CollectionFactory as SourceCollectionFactory;
 
 use MageMonk\Appointment\Model\AppointmentFactory;
 
-class Data extends \Magento\Framework\View\Element\Template
+class Data extends TemplateAlias
 {
     /**
      * Initialization
@@ -58,9 +59,9 @@ class Data extends \Magento\Framework\View\Element\Template
     }
 
     /**
-     * @return mixed
+     * @return array|null
      */
-    public function getAppointments(): mixed
+    public function getAppointments(): ?array
     {
        $customerId = $this->getCustomer()->getId();
         return $this->appointmentFactory->create()
@@ -87,6 +88,6 @@ class Data extends \Magento\Framework\View\Element\Template
      */
     public function getRegion(): string
     {
-        return $this->directoryBlock->getRegionHtmlSelect();;
+        return $this->directoryBlock->getRegionHtmlSelect();
     }
 }

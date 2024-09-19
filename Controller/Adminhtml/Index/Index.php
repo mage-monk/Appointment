@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace MageMonk\Appointment\Controller\Adminhtml\Index;
@@ -9,6 +10,9 @@ use Magento\Framework\Controller\ResultFactory;
 
 class Index extends Action
 {
+    /**
+     * Constants
+     */
     const ADMIN_RESOURCE = 'MageMonk_Appointment::appointment';
 
     /**
