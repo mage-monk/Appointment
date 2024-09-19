@@ -1,7 +1,7 @@
 {
-    "name": "mage-monk/appointment",
+    "name": "mage-monk/module-appoinment",
     "description": "Book an appointment",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "require": {
         "php": "^8.2"
     },
